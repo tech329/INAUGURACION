@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Inauguración</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1><i class="fas fa-champagne-glasses"></i> Panel de Control</h1>
+                <p>Inauguración Caja de Ahorros Tupak Rantina</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Correo Electrónico
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="admin@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Contraseña
+                    </label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Acceder al Panel
+                </button>
+                <div id="loginError" class="error-message"></div>
+                <div id="loginLoading" class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Iniciando sesión...
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel de Control -->
+    <div id="appScreen" class="app-container hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-champagne-glasses"></i> Panel de Control - Inauguración</h1>
+                <div class="header-actions">
+                    <span id="userInfo" class="user-info">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Usuario</span>
+                    </span>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Principal -->
+        <div class="dashboard-container">
+            <!-- Información del Evento -->
+            <div class="event-info">
+                <h2><i class="fas fa-calendar-alt"></i> Información del Evento</h2>
+                <div class="event-details">
+                    <div class="event-card">
+                        <h3>Inauguración de la Caja de Ahorros Tupak Rantina</h3>
+                        <div class="event-meta">
+                            <div class="event-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Domingo 31 de agosto</span>
+                            </div>
+                            <div class="event-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Machachi - Avenida Amazonas</span>
+                            </div>
+                            <div class="event-item">
+                                <i class="fas fa-clock"></i>
+                                <span>9:00 de la mañana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas Generales -->
+            <div class="stats-section">
+                <h2><i class="fas fa-chart-bar"></i> Resumen de Respuestas</h2>
+                <div class="stats-grid">
+                    <div class="stat-card confirmados">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalConfirmados">0</h3>
+                            <p>Asistirán</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card representantes">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalRepresentantes">0</h3>
+                            <p>Enviarán Representante</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card no-asisten">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalNoAsisten">0</h3>
+                            <p>No Asistirán</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card sin-respuesta">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalSinRespuesta">0</h3>
+                            <p>Sin Respuesta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas de Personas -->
+            <div class="people-stats">
+                <h2><i class="fas fa-users"></i> Estadísticas de Asistencia</h2>
+                <div class="people-grid">
+                    <div class="people-card">
+                        <div class="people-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="people-content">
+                            <h3 id="totalPersonas">0</h3>
+                            <p>Total de Personas que Asistirán</p>
+                            <small>(Incluyendo acompañantes)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="people-card">
+                        <div class="people-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="people-content">
+                            <h3 id="totalAdicionales">0</h3>
+                            <p>Personas Adicionales</p>
+                            <small>(Solo acompañantes)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista Detallada de Respuestas -->
+            <div class="responses-section">
+                <h2><i class="fas fa-list"></i> Respuestas Detalladas</h2>
+                
+                <!-- Filtros -->
+                <div class="filters">
+                    <select id="filtroRespuesta" class="filter-select">
+                        <option value="">Todas las respuestas</option>
+                        <option value="ASISTIRÁ">Asistirán</option>
+                        <option value="ENVIARÁ UN REPRESENTANTE">Enviarán Representante</option>
+                        <option value="NO ASISTIRÁ">No Asistirán</option>
+                        <option value="SIN_RESPUESTA">Sin Respuesta</option>
+                    </select>
+                    
+                    <input type="text" id="buscarSocio" placeholder="Buscar por nombre o cédula..." class="search-input">
+                    
+                    <button id="exportarBtn" class="export-btn">
+                        <i class="fas fa-download"></i>
+                        Exportar Datos
+                    </button>
+                </div>
+                
+                <!-- Tabla de Respuestas -->
+                <div class="responses-table-container">
+                    <table id="responsesTable" class="responses-table">
+                        <thead>
+                            <tr>
+                                <th>Socio</th>
+                                <th>Cédula</th>
+                                <th>Fundador</th>
+                                <th>Respuesta</th>
+                                <th>Adicionales</th>
+                                <th>Total Personas</th>
+                                <th>Fecha Respuesta</th>
+                            </tr>
+                        </thead>
+                        <tbody id="responsesTableBody">
+                            <!-- Se llenará dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Mensaje cuando no hay datos -->
+                <div id="noDataMessage" class="no-data-message hidden">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No hay respuestas aún</h3>
+                    <p>Las respuestas aparecerán aquí cuando los socios completen el formulario.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Cargando datos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

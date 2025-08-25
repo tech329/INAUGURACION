@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia - Inauguración</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="form-body">
+    <div class="form-container">
+        <!-- Header del Evento -->
+        <div class="event-header">
+            <div class="event-logo">
+                <i class="fas fa-champagne-glasses"></i>
+            </div>
+            <h1>Caja de Ahorros Tupak Rantina</h1>
+            <h2>Inauguración Oficial</h2>
+            <div class="event-date">
+                <i class="fas fa-calendar-alt"></i>
+                Domingo 31 de agosto • 9:00 AM • Machachi
+            </div>
+        </div>
+
+        <!-- Paso 1: Búsqueda por Cédula -->
+        <div id="searchStep" class="step">
+            <div class="step-card">
+                <div class="step-header">
+                    <h3><i class="fas fa-search"></i> Identificación</h3>
+                    <p>Por favor, ingresa tu número de cédula para continuar</p>
+                </div>
+                
+                <form id="searchForm" class="search-form">
+                    <div class="form-group">
+                        <label for="cedula">
+                            <i class="fas fa-id-card"></i>
+                            Número de Cédula
+                        </label>
+                        <input type="text" id="cedula" name="cedula" required 
+                               placeholder="Ej: 1234567890" maxlength="11">
+                        <small class="form-help">Ingresa tu cédula sin guiones ni espacios</small>
+                    </div>
+                    
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-search"></i>
+                        Buscar mi Invitación
+                    </button>
+                </form>
+                
+                <div id="searchError" class="error-message"></div>
+                <div id="searchLoading" class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Buscando tu información...
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 2: Invitación Personalizada -->
+        <div id="invitationStep" class="step hidden">
+            <div class="step-card invitation-card">
+                <div class="invitation-header">
+                    <h3><i class="fas fa-envelope-open"></i> ¡Hola <span id="socioNombre"></span>!</h3>
+                </div>
+                
+                <div class="invitation-content">
+                    <p class="invitation-text">
+                        Estimado/a socio/a, estás cordialmente invitado/a a la 
+                        <strong>Inauguración de la Caja de Ahorros Tupak Rantina</strong> 
+                        a celebrarse el día <strong>domingo 31 de agosto</strong> 
+                        en la ciudad de <strong>Machachi</strong> en la 
+                        <strong>Avenida Amazonas</strong> a las 
+                        <strong>9:00 de la mañana</strong>.
+                    </p>
+                    
+                    <div class="invitation-highlight">
+                        <i class="fas fa-heart"></i>
+                        Por favor, indícanos si vas a asistir
+                    </div>
+                </div>
+                
+                <div class="response-buttons">
+                    <button id="btnAsistire" class="response-btn attend">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ASISTIRÉ</span>
+                    </button>
+                    
+                    <button id="btnNoAsistire" class="response-btn decline">
+                        <i class="fas fa-times-circle"></i>
+                        <span>NO ASISTIRÉ</span>
+                    </button>
+                    
+                    <button id="btnRepresentante" class="response-btn delegate">
+                        <i class="fas fa-user-friends"></i>
+                        <span>ENVIARÉ A ALGUIEN EN MI LUGAR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 3: Pregunta sobre Acompañantes -->
+        <div id="accompaniedStep" class="step hidden">
+            <div class="step-card">
+                <div class="step-header">
+                    <h3><i class="fas fa-users"></i> ¿Habrá personas adicionales?</h3>
+                    <p>¿Irás acompañado/a o se sumará alguien más?</p>
+                </div>
+                
+                <div class="accompanied-buttons">
+                    <button id="btnConAcompanantes" class="response-btn attend">
+                        <i class="fas fa-users"></i>
+                        <span>SÍ, habrá personas adicionales</span>
+                    </button>
+                    
+                    <button id="btnSinAcompanantes" class="response-btn neutral">
+                        <i class="fas fa-user"></i>
+                        <span>NO, solo una persona</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 4: Cantidad de Acompañantes -->
+        <div id="additionalStep" class="step hidden">
+            <div class="step-card">
+                <div class="step-header">
+                    <h3><i class="fas fa-plus-circle"></i> Personas Adicionales</h3>
+                    <p>¿Cuántas personas adicionales asistirán? (sin incluirte a ti o a tu representante)</p>
+                </div>
+                
+                <form id="additionalForm" class="additional-form">
+                    <div class="form-group">
+                        <label for="adicionales">
+                            <i class="fas fa-users"></i>
+                            Número de Personas Adicionales
+                        </label>
+                        <input type="number" id="adicionales" name="adicionales" 
+                               min="1" max="10" required placeholder="Ej: 2">
+                        <small class="form-help">Máximo 10 personas adicionales</small>
+                    </div>
+                    
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-check"></i>
+                        Confirmar Respuesta
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Paso 5: Confirmación Final -->
+        <div id="confirmationStep" class="step hidden">
+            <div class="step-card confirmation-card">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                
+                <h3 id="confirmationTitle">¡Respuesta Registrada!</h3>
+                
+                <div id="confirmationContent" class="confirmation-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                
+                <div class="confirmation-actions">
+                    <button id="btnNuevaConsulta" class="secondary-btn">
+                        <i class="fas fa-search"></i>
+                        Hacer otra consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de Error Global -->
+        <div id="globalError" class="global-error hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="globalErrorText">Ha ocurrido un error</span>
+        </div>
+
+        <!-- Loading Global -->
+        <div id="globalLoading" class="global-loading hidden">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Procesando tu respuesta...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="form.js"></script>
+</body>
+</html>
